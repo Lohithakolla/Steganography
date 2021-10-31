@@ -157,14 +157,13 @@ $('button.encode, button.decode').click(function(event) {
         c <<= 1;
         c |= parseInt(binaryMessage[i + j]);
       }
-  
-
+      
+      if(c > 0)
       output += String.fromCharCode(c);
+      
     }
+    // console.log(output)
     var  op=output;
-    for(var i=0;i<output.length&&output[i]!=null;i++){
-        op+=output[i]
-    }
     
   
     $('.binary-decode textarea').text(op);
