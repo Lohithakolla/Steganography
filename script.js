@@ -49,6 +49,13 @@ $('button.encode, button.decode').click(function(event) {
   }
   
   function encodeMessage() {
+    let x = document.forms["Myform"]["encodeMsg"].value;
+    if (x.length >=150) {
+      alert("Msg must be with in 150 characters");
+      console.log(x.length);
+      
+    }
+    else{
     $(".error").hide();
     $(".binary").hide();
   
@@ -130,6 +137,7 @@ $('button.encode, button.decode').click(function(event) {
     $(".binary").fadeIn();
     $(".images .nulled").fadeIn();
     $(".images .message").fadeIn();
+  }
   };
   
   function decodeMessage() {
@@ -158,15 +166,19 @@ $('button.encode, button.decode').click(function(event) {
         c |= parseInt(binaryMessage[i + j]);
       }
       
-      if(c > 0)
-      output += String.fromCharCode(c);
+      if(c > 31 && c<128){
+        output += String.fromCharCode(c);
+      }
+      
       
     }
-    // console.log(output)
-    var  op=output;
+    console.log(output)
     
+    if(output.length>=150){
+      output="No Message Found";
+    }
   
-    $('.binary-decode textarea').text(op);
+    $('.binary-decode textarea').text(output);
     $('.binary-decode').fadeIn();
   };
   function chooseFile() {
